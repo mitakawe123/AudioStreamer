@@ -1,0 +1,35 @@
+/src
+ ├── Scraper/          # намира видео URL от всякакви сайтове
+ ├── Streamer/         # пуска ffmpeg и дава chunk-ове
+ ├── ASR/              # интеграция с whisper.cpp REST API
+ ├── Translator/       # Argos / MarianMT
+ ├── TTS/              # Piper / Coqui
+ ├── Api/              # ASP.NET Core API (start/stop/status)
+ └── Player/           # възпроизвежда TTS потока
+
+
+src/
+ ├── Api/
+ │    ├── Endpoints/
+ │    │     └── StartStreamEndpoint.cs
+ │    └── Program.cs
+ ├── Background/
+ │    ├── StreamJob.cs
+ │    ├── StreamWorker.cs
+ │    └── StreamProcessor.cs
+ ├── Modules/
+ │    ├── ScraperModule.cs
+ │    ├── FFmpegModule.cs
+ │    ├── AsrModule.cs
+ │    ├── TranslatorModule.cs
+ │    ├── TtsModule.cs
+ │    └── OutputModule.cs
+ ├── Models/
+ │    └── StreamSession.cs
+ └── appsettings.json
+ 
+ Ти пращаш URL + език →
+ API-то връща веднага 200 OK →
+ в бекграунда започва процесът:
+ scrape → extract audio → transcribe → translate → synthesize speech → output
+ Scraper → FFmpeg → ASR → Translator → TTS → Output

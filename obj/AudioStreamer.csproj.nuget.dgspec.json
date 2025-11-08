@@ -47,6 +47,10 @@
             "FastEndpoints": {
               "target": "Package",
               "version": "[7.1.0, )"
+            },
+            "FastEndpoints.Swagger": {
+              "target": "Package",
+              "version": "[7.1.0, )"
             }
           },
           "imports": [
