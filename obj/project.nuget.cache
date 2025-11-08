@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "S5I24JIFnJY=",
+  "success": true,
+  "projectFilePath": "/home/mitakawe/Desktop/AudioStreamer/AudioStreamer.csproj",
+  "expectedPackageFiles": [
+    "/home/mitakawe/.nuget/packages/fastendpoints/7.1.0/fastendpoints.7.1.0.nupkg.sha512",
+    "/home/mitakawe/.nuget/packages/fastendpoints.attributes/7.1.0/fastendpoints.attributes.7.1.0.nupkg.sha512",
+    "/home/mitakawe/.nuget/packages/fastendpoints.messaging.core/7.1.0/fastendpoints.messaging.core.7.1.0.nupkg.sha512",
+    "/home/mitakawe/.nuget/packages/fluentvalidation/12.0.0/fluentvalidation.12.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
