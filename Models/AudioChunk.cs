@@ -1,3 +1,3 @@
 namespace AudioStreamer.Models;
 
-public record AudioChunk();
+public record AudioChunk(byte[] ReadBuffer);

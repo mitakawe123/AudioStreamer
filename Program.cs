@@ -1,5 +1,8 @@
 using AudioStreamer.Background;
+using AudioStreamer.Models.Sites;
 using AudioStreamer.Services;
+using AudioStreamer.Services.Playwright;
+using AudioStreamer.Services.Playwright.SiteStrategy;
 using FastEndpoints;
 using FastEndpoints.Swagger;
 
@@ -11,7 +14,10 @@ bld.Services
 bld.Services.AddSingleton<IStreamJob, StreamJob>();
 bld.Services.AddHostedService(sp => (StreamJob)sp.GetRequiredService<IStreamJob>());
 
-bld.Services.AddScoped<ISiteStrategyFactory, SiteStrategyFactoryFactory>();
+bld.Services
+    .AddSingleton<ISiteStrategyFactory, SiteStrategyFactoryFactory>()
+    .AddSingleton<Youtube>()
+    .AddSingleton<IPlaywrightService, PlaywrightService>();
 
 var app = bld.Build();
 app

@@ -6,7 +6,5 @@ public abstract class Site
 {
     public abstract SupportedSites Type { get; }
     
-    public abstract Task<StreamMetadata> GetMetadataAsync(string url);
-    
     public abstract IAsyncEnumerable<AudioChunk> StreamAudioAsync(string url, CancellationToken token);
 }
