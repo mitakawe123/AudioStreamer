@@ -1,11 +1,13 @@
 using System.Threading.Channels;
 using AudioStreamer.Models;
+using AudioStreamer.Services;
 
 namespace AudioStreamer.Background;
 
-public class StreamJob(ILogger<StreamJob> logger) : BackgroundService, IStreamJob
+public class StreamJob(ISiteStrategyFactory siteStrategyFactory, ILogger<StreamJob> logger) : BackgroundService, IStreamJob
 {    
     private readonly Channel<StreamJobDto> _channel = Channel.CreateUnbounded<StreamJobDto>();
+    private readonly ISiteStrategyFactory _siteStrategyFactory = siteStrategyFactory;
     private readonly ILogger<StreamJob>  _logger = logger;
 
     public async ValueTask EnqueueAsync(StreamJobDto streamStartRequest)
@@ -22,6 +24,16 @@ public class StreamJob(ILogger<StreamJob> logger) : BackgroundService, IStreamJo
             try
             {
                 _logger.LogInformation("Processing item: {Item}", item);
+                
+                var site = _siteStrategyFactory.GetSite(item.Url);
+                var metadata = await site.GetMetadataAsync(item.Url);
+                await foreach (var chunk in site.StreamAudioAsync(item.Url, stoppingToken))
+                {
+                    // Push chunk to STT
+                    // Push chunk to TTS
+                    // Save?
+                }
+                
                 _logger.LogInformation("Finished processing: {Item}", item);
             }
             catch (Exception ex)
@@ -30,5 +42,6 @@ public class StreamJob(ILogger<StreamJob> logger) : BackgroundService, IStreamJo
             }
         }
 
-        _logger.LogInformation("Background worker stopped.");    }
+        _logger.LogInformation("Background worker stopped.");    
+    }
 }

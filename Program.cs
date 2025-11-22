@@ -1,4 +1,5 @@
 using AudioStreamer.Background;
+using AudioStreamer.Services;
 using FastEndpoints;
 using FastEndpoints.Swagger;
 
@@ -9,6 +10,8 @@ bld.Services
 
 bld.Services.AddSingleton<IStreamJob, StreamJob>();
 bld.Services.AddHostedService(sp => (StreamJob)sp.GetRequiredService<IStreamJob>());
+
+bld.Services.AddScoped<ISiteStrategyFactory, SiteStrategyFactoryFactory>();
 
 var app = bld.Build();
 app

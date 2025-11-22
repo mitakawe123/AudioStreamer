@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2ukGCLP2n18=",
+  "dgSpecHash": "7JyODR+cB4c=",
   "success": true,
   "projectFilePath": "/home/mitakawe/Desktop/AudioStreamer/AudioStreamer.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "/home/mitakawe/.nuget/packages/fastendpoints.messaging.core/7.1.0/fastendpoints.messaging.core.7.1.0.nupkg.sha512",
     "/home/mitakawe/.nuget/packages/fastendpoints.swagger/7.1.0/fastendpoints.swagger.7.1.0.nupkg.sha512",
     "/home/mitakawe/.nuget/packages/fluentvalidation/12.0.0/fluentvalidation.12.0.0.nupkg.sha512",
+    "/home/mitakawe/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "/home/mitakawe/.nuget/packages/namotion.reflection/3.4.3/namotion.reflection.3.4.3.nupkg.sha512",
     "/home/mitakawe/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/home/mitakawe/.nuget/packages/njsonschema/11.5.1/njsonschema.11.5.1.nupkg.sha512",
