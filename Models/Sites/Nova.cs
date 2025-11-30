@@ -4,35 +4,33 @@ using AudioStreamer.Services.Playwright;
 
 namespace AudioStreamer.Models.Sites;
 
-public sealed class Youtube(IPlaywrightService playwrightService, ILogger<Youtube> logger) : Site
+public sealed class Nova(IPlaywrightService playwrightService, ILogger<Nova> logger) : Site
 {
-    private const string ConsentButtonText = "accept|agree";
+    public override string UrlPathToIntercept => "novaplay-vod";
     
-    public override string UrlPathToIntercept => "videoplayback";
-    
-    public override SupportedSites Type => SupportedSites.Youtube;
-    
+    public override SupportedSites Type => SupportedSites.Nova;
+
     private readonly IPlaywrightService _playwrightService = playwrightService;
-    private readonly ILogger<Youtube> _logger = logger;
+    private readonly ILogger<Nova> _logger = logger;
 
     public override async Task NavigateAsync(string url)
     {
         await _playwrightService.NavigateAsync(url);
     }
 
-    public override async Task RemoveObstaclesAsync(CancellationToken token)
+    public override Task RemoveObstaclesAsync(CancellationToken token)
     {
-        await _playwrightService.ClickButtonAsync(ConsentButtonText);
+        throw new NotImplementedException();
     }
     
     public override async IAsyncEnumerable<AudioChunk> StreamAudioAsync([EnumeratorCancellation] CancellationToken token)
-    { 
+    {
         var streamer = _playwrightService.StreamResponsesAsync(UrlPathToIntercept);
         await foreach (var audioChunk in streamer)
         {
             // Process chunk: send to transcription / TTS pipeline
             _logger.LogInformation("Received chunk {audioChunk} bytes", audioChunk);
             yield return new AudioChunk(audioChunk);
-        }
+        }    
     }
 }

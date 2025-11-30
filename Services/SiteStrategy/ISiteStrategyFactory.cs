@@ -1,6 +1,6 @@
 using AudioStreamer.Models.Sites;
 
-namespace AudioStreamer.Services.Playwright.SiteStrategy;
+namespace AudioStreamer.Services.SiteStrategy;
 
 public interface ISiteStrategyFactory
 {

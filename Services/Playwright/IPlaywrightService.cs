@@ -2,5 +2,11 @@ namespace AudioStreamer.Services.Playwright;
 
 public interface IPlaywrightService
 {
-    IAsyncEnumerable<byte[]> StreamResponsesAsync(string url, string urlPathToIntercept);
+    Task NavigateAsync(string url);
+
+    Task ClickButtonAsync(string buttonText);
+    
+    IAsyncEnumerable<byte[]> StreamResponsesAsync(string urlPathToIntercept);
+
+    ValueTask CloseAsync();
 }

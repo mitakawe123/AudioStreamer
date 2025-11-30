@@ -1,4 +1,3 @@
-using AudioStreamer.Endpoints;
 using AudioStreamer.Models;
 
 namespace AudioStreamer.Background;
